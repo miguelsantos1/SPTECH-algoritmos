@@ -1,0 +1,51 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+    width: 100%;
+    margin: 10px auto;
+    max-width: 400px;
+    text-align: center;
+}
+
+main h1 {
+    color: rgb(67, 67, 67);
+    margin-bottom: 10px;
+}
+
+main div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    
+    gap: 10px;
+}
+
+main div input {
+    width: 70%;
+    padding: 10px;
+}
+
+button {
+    width: 70%;
+    padding: 10px 2px;
+    border-radius: 5px; 
+
+    background-color: rgb(116, 70, 169);
+    color: white;
+    cursor: pointer;
+
+}
+
+
+
+

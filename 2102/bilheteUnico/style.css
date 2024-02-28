@@ -1,0 +1,59 @@
+* {
+    padding: 0;
+    margin: 0;
+
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+
+    background-color: rgba(233, 233, 233, 0.991);
+}
+
+main {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+main h1 {
+    color: rgba(0, 0, 0, 0.677);
+
+    margin-bottom: 1rem;
+}
+
+main p {
+    font-size: 1.2rem;
+}
+
+
+main div {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+main input {
+    padding: 10px 5px;
+    margin: 10px 0 10px 0px;
+
+    text-align: center;
+}
+
+
+main button {
+    padding: 10px 0px;
+    border: none;
+    cursor: pointer;
+    margin: 2px 0;
+
+    background-color: rgb(78, 36, 133);
+    color: white;
+}
+main button:hover {
+    background-color: rgb(62, 29, 105);
+}
