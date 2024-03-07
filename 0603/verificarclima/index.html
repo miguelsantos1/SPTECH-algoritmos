@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- METADATAS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <!-- TITLE -->
+    <title>IF</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1> IF ELSE </h1>
+
+        <div>
+            <input placeholder="Temperatura do ambiente?" type="number" id="input_temp">
+            <button onclick="temperatura()">Verificar clima</button>
+        </div>
+        <p id="output"></p>
+
+    </main>
+
+    <script>
+
+        function temperatura() {
+
+            var temperatura = Number(input_temp.value)
+            if(temperatura >= 10) {
+               output.innerHTML = '<img style="width: 250px" src="https://images.pexels.com/photos/3600078/pexels-photo-3600078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />'
+            } else {
+                output.innerHTML = '<img style="width: 250px" src="https://images.pexels.com/photos/5966630/pexels-photo-5966630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />'
+            }
+
+        }
+
+
+    </script>
+</body>
+</html>
