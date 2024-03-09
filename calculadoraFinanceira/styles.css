@@ -36,7 +36,7 @@ header span {
 
 main {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
 
     display: flex;
     flex-direction: column;
@@ -63,7 +63,7 @@ main input {
 }
 
 main input:focus {
-    outline: 1.2px solid #FFB800;
+    outline: 2px solid #FFB800;
 }
 
 

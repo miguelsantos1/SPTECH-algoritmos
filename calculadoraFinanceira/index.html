@@ -20,17 +20,61 @@
     <main>
         
             <h2>Calculadora <span>Financeira</span></h2>
-            <input placeholder="Qual o valor da mensalidade da van?" autofocus type="text" />
-            <input placeholder="Quantos passageiros você perdeu por ano?" type="text" />
-            <input placeholder="Quantos desses saíram por falta da segurança?" type="text" />
-            <button> CALCULAR </button>
+            <input placeholder="Qual o valor da mensalidade da van?" autofocus type="number" id="input_mensalidadeVan" />
+            <input placeholder="Quantos passageiros você perdeu por ano?" type="number" id="input_passageirosPerdidosPorAno" />
+            <input placeholder="Quantos desses saíram por falta da segurança?" type="number" id="input_sairamPelaSeguranca"  />
+            <button onclick="calcPerdaLucro()"> CALCULAR </button>
+            <div class="warning">
+                <p id="p_output"></p>
+            </div>
     
    </main>
 
    <aside>
         <img src="src/calcImage.png" alt="">
    </aside>
+   
+   <script>
 
+        function calcPerdaLucro() {
+            const mensalidadeVan = input_mensalidadeVan.value
+            const totalPassageirosPerdidos = input_passageirosPerdidosPorAno.value
+            const sairamPelaSeguranca = input_sairamPelaSeguranca.value
+
+            // resposta
+            const output = p_output
+
+
+            // pegar quanto perdeu ao ano 
+
+            const lucroPerdidoAno = mensalidadeVan * 12
+            const PorcentagemlucroPerdidoAno = (totalPassageirosPerdidos * 12) / 100
+        
+
+            // pegar porcentagem de lucro perdido ao ano
+            
+            // pegar porcentagem de passageiros perdidos pela falta de segurança
+            const porcentagemPerdaPassageirosPelaSeguranca =  100 * sairamPelaSeguranca / totalPassageirosPerdidos
+
+
+            // resultado
+
+            output.innerHTML = `
+            <div style="display: flex; gap: 10px; align-items: center; margin: 1rem 0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ff8800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-triangle"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                
+                <h3>PERDAS POR FALTA DE SEGURANÇA </h3>
+            </div>
+
+            - Perdeu ${sairamPelaSeguranca} famílias <br />
+            - Perdeu R$${lucroPerdidoAno.toFixed(2).replace('.', ',')} no ano <br />
+            - Perdeu ${porcentagemPerdaPassageirosPelaSeguranca.toFixed(0)}% dos passageiros pela falta de segurança
+            
+            `
+        }
+
+   </script>
 </body>
+
 
 </html>
