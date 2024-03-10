@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- METADATAS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <!-- TITLE -->
+    <title>IF</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <h1> SALÁRIO CLT </h1>
+
+        <div>
+            <p>Informe seu salário mensal </p>
+            <input type="number" id="input_salario">
+            <p>Informe o adicional</p>
+            <input type="number" id="input_adicional">
+            <p>Informe o bonus</p>
+            <input type="number" id="input_bonus">
+            <button onclick="calcularSalarioCLT()">Analisar minha renda</button>
+        </div>
+        <div id="output"></div>
+
+    </div>
+
+    <script>
+
+        function calcularSalarioCLT() {
+
+            // pegando valores dos inputs
+
+            var salario = Number(input_salario.value)
+            var adicional = Number(input_adicional.value)
+            var bonus = Number(input_bonus.value)
+
+            
+            // salario bruto
+            
+            var salarioBruto = salario + adicional + bonus;
+            
+            output.innerHTML = `
+            <h2>Análise de sua renda: </h2>
+            
+            <p>Com o salário de <b> R$${salario}</b>, adicional de <b>R$${adicional} </b> e bônus de <b>R$${bonus} </b>, você tem: <br /> <br />`
+                
+            output.innerHTML += `Bruto: <b>R$${salarioBruto}</b> <br />`
+
+            // declarando variáveis para poder usar depois
+
+            var impostoDeRenda;
+            var inss;
+            var fgts; 
+            var salarioBrutoComIR;
+
+            // verificando salario para descontos
+            
+            if(salarioBruto >= 10000) {
+                impostoDeRenda = (salarioBruto * 12.5) / 100
+                salarioBrutoComIR = salarioBruto - impostoDeRenda
+                inss = (salarioBrutoComIR * 10) / 100
+                fgts = (salarioBrutoComIR * 8) / 100 
+                
+                output.innerHTML += `IR: <b> R$${impostoDeRenda}</b> `          
+            } else {
+                impostoDeRenda = 0;
+                output.innerHTML += `IR: <b>R$${impostoDeRenda} </b>`
+                inss = (salarioBruto * 10) / 100
+                fgts = (salarioBruto * 8) / 100 
+            }
+            
+            // INSS - output
+            
+            output.innerHTML += `<br /> INSS: <b>R$${inss}</b> <br />`
+            
+            // FGTS - ouput
+        
+            output.innerHTML += `INSS: <b>R$${fgts}</b> <br />`
+            
+            // SALARIO BRUTO - ouput
+
+            var salarioLiquido = salarioBruto - impostoDeRenda - inss - fgts
+            output.innerHTML += `Liquido: <b>R$${salarioLiquido}</b>`
+
+            // ANALISE RENDA EXTRA - output
+
+            if(salario >= 2500) {
+                output.innerHTML += ` <br /> <br />Com a renda de <b>R$${salarioLiquido} </b>, é recomendado poupar <b>R$${salarioLiquido * 0.15}</b>, para que em um ano tenha poupado R$<b>${(salarioLiquido * 0.15) * 12}</b>`
+            } else {
+                output.innerHTML += ` <br /> <br />Com a renda de <b>R$${salarioLiquido}</b>, é recomendado obter renda extra para realizar uma poupança.`
+            }
+
+        }
+
+
+    </script>
+</body>
+</html>
