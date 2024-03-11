@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- METADATAS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <!-- TITLE -->
+    <title>IF</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: rgb(238, 238, 238);
+        }
+
+        div {
+            width: 100%;
+            max-width: 700px;
+
+            text-align: center;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        div h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+
+            color: #000000ab;
+        }
+
+        div div {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        div p {
+            margin: 0;
+        }
+
+        div input {
+            padding: 15px;
+            border: 0;
+
+            border-radius: 5px;
+        }
+
+        div input:focus {
+            outline: 0;
+
+        }
+
+        div button {
+            padding: 15px;
+            border: 0;
+            border-radius: 5px;
+
+            color: white;
+            background-color: rgb(101, 0, 184);
+        }
+
+        div button:hover {
+            background-color: rgb(81, 0, 147);
+            cursor: pointer;
+        }
+
+        div p {
+            text-align: left;
+        }
+
+        #output {
+            display: block;
+            text-align: left;
+            padding-top: 0;
+        }
+
+        #output h2 {
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1> Calcular total de despesas </h1>
+
+        <div>
+            <p> Informe a quantidade de energia consumida em kWh (apenas números). </p>
+            <input type="number" id="input_energiaConsumida">
+            <p>Informe a bandeira tarifária da energia (vermelha, amarela ou verde). </p>
+            <input type="text" id="input_bandeiraTarifaria">
+            <p>Informe volume de água consumido em litros (apenas números). </p>
+            <input type="number" id="input_aguaConsumida">
+            <p>Informe a quantidade de vazamentos de água na casa (apenas números). </p>
+            <input type="number" id="input_vazamentosAgua">
+            <p>Informe o volume de gás consumido em litros (apenas números). </p>
+            <input type="number" id="input_gasConsumido">
+            <p>Informe a quantidade de MB (megabyte) do plano de internet (apenas números). </p>
+            <input type="number" id="input_quantidadePlanoInternet">
+            <p>Informe a indicação se possui uma linha telefônica vinculada ao plano de internet (será informado "sim"
+                ou "não").</p>
+            <input type="text" id="input_linhaTelefonicaVinculada">
+
+            <button onclick="calcularDespesas()">Analisar minha renda</button>
+        </div>
+        <div id="output"></div>
+
+    </div>
+
+    <script>
+
+        function calcularDespesas() {
+
+            // pegando valores dos inputs a serem utilizados
+
+            var energiaConsumida = Number(input_energiaConsumida.value)
+            var bandeiraTarifaria = input_bandeiraTarifaria.value
+            var aguaConsumida = Number(input_aguaConsumida.value)
+            var vazamentosAgua = Number(input_vazamentosAgua.value)
+            var gasConsumido = Number(input_gasConsumido.value)
+            var quantidadePlanoInternet = Number(input_quantidadePlanoInternet.value)
+            var linhaTelefonicaVinculada = input_linhaTelefonicaVinculada.value
+
+            // contas
+
+            var contaEnergia;
+            var contaAgua;
+            var contaGas;
+            var contaInternet;
+            var valorTotalDespesas;
+
+            // valores bases
+
+            var valorBaseEnergia;
+            var valorBaseAgua;
+            var valorBaseInternet
+
+            // conta energia
+
+            if (bandeiraTarifaria == "verde") {
+
+                valorBaseEnergia = 0.75;
+
+                if (energiaConsumida <= 50) {
+                    valorBaseEnergia *= 0.90
+                }
+
+                contaEnergia = valorBaseEnergia * energiaConsumida
+
+                output.innerHTML = `<p>Com o consumo de ${energiaConsumida}kWh na bandeira ${bandeiraTarifaria}, a conta de energia totaliza R$${contaEnergia}. </p>`
+
+            }
+            if (bandeiraTarifaria == "amarela") {
+
+                valorBaseEnergia = 0.90;
+
+                if (energiaConsumida <= 50) {
+                    valorBaseEnergia *= 0.90
+                }
+
+                contaEnergia = valorBaseEnergia * energiaConsumida
+
+                output.innerHTML = `<p>Com o consumo de ${energiaConsumida}kWh na bandeira ${bandeiraTarifaria}, a conta de energia totaliza R$${contaEnergia}. </p>`
+
+            }
+            if (bandeiraTarifaria == "vermelha") {
+
+                valorBaseEnergia = 1;
+
+                if (energiaConsumida <= 50) {
+                    valorBaseEnergia *= 0.90
+                }
+
+                contaEnergia = valorBaseEnergia * energiaConsumida
+                output.innerHTML = `<p>Com o consumo de ${energiaConsumida}kWh na bandeira ${bandeiraTarifaria}, a conta de energia totaliza R$${contaEnergia}. </p>`
+
+            }
+
+            // Calcular água
+
+            valorBaseAgua = 3.5
+            contaAgua = ((valorBaseAgua + vazamentosAgua) * 10 / 10) * aguaConsumida
+
+            output.innerHTML += `<br /><p>Com o consumo de ${aguaConsumida} litros de água contendo ${vazamentosAgua} vazamentos, a conta de água totaliza R$${contaAgua}. </p>`
+
+            // Calcular conta de gás
+
+            contaGas = gasConsumido * 2.5
+
+            output.innerHTML += `<br /><p>Com o consumo de ${gasConsumido} litros de gás, a conta de gás totaliza R$${contaGas}. </p>`
+
+            // calcular internet
+
+            valorBaseInternet = 0.80
+
+            if (linhaTelefonicaVinculada == "sim") {
+                valorBaseInternet += valorBaseInternet * 25 / 100
+            }
+            if (linhaTelefonicaVinculada == "nao") {
+                valorBaseInternet -= valorBaseInternet * 7.5 / 100
+            }
+
+            contaInternet = valorBaseInternet * quantidadePlanoInternet
+
+            // valor total despesas
+
+            valorTotalDespesas = contaAgua + contaEnergia + contaGas + contaInternet
+
+
+
+            output.innerHTML += `<br /><p>Com o consumo de ${quantidadePlanoInternet} MB de internet, o valor do plano de internet/telefone totaliza R$${contaInternet}. Gasto total de despesas mensal: R$ ${valorTotalDespesas}.  </p>`
+
+
+
+
+        }
+
+    </script>
+</body>
+
+</html>
