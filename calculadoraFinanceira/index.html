@@ -16,61 +16,53 @@
 </head>
 
 <body>
+    <div class="main">
+        <h2>Calculadora <span>Financeira</span></h2>
+        <p>Qual o valor da mensalidade? </p>
+        <input placeholder="Ex.: 120" type="number" id="input_mensalidade" />
+        <p>Quantas famílias você atende atualmente? </p>
+        <input placeholder="Ex.: 12" autofocus type="number" id="input_qtdFamilia" />
+        <button onclick="calcPerdaLucro()"> CALCULAR </button>
+        <div class="warning">
+            <p id="output"></p>
+        </div>
+   </div>
 
-    <main>
-        
-            <h2>Calculadora <span>Financeira</span></h2>
-            <input placeholder="Qual o valor da mensalidade da van?" autofocus type="number" id="input_mensalidadeVan" />
-            <input placeholder="Quantos passageiros você perdeu por ano?" type="number" id="input_passageirosPerdidosPorAno" />
-            <input placeholder="Quantos desses saíram por falta da segurança?" type="number" id="input_sairamPelaSeguranca"  />
-            <button onclick="calcPerdaLucro()"> CALCULAR </button>
-            <div class="warning">
-                <p id="p_output"></p>
-            </div>
-    
-   </main>
+   <div id="div_output" class="aside">
 
-   <aside>
-        <img src="src/calcImage.png" alt="">
-   </aside>
-   
+   </div>
+
    <script>
 
         function calcPerdaLucro() {
-            const mensalidadeVan = input_mensalidadeVan.value
-            const totalPassageirosPerdidos = input_passageirosPerdidosPorAno.value
-            const sairamPelaSeguranca = input_sairamPelaSeguranca.value
 
-            // resposta
-            const output = p_output
+        var qtd_familia = input_qtdFamilia.value;
+        var mensalidade = input_mensalidade.value;
+        var ex_clientes
+        var perda;
+        var ganhos;
 
+        ex_clientes = (54 / 100) * qtd_familia;
+        perda = (mensalidade * ex_clientes) * 12;
+        ganhos = (mensalidade * qtd_familia) * 12;
 
-            // pegar quanto perdeu ao ano 
+        div_output.style.display = 'block'
 
-            const lucroPerdidoAno = mensalidadeVan * 12
-            const PorcentagemlucroPerdidoAno = (totalPassageirosPerdidos * 12) / 100
+        output.innerHTML = `Você pode perder até <p style="color: #FFB800; font-size: 40px;"><b>R$${perda.toFixed(2).replace('.', ',')}</b></p>`
+
+        div_output.innerHTML = `
+        <h2 style="color: #FFB800; font-size: 40px;"> POR QUÊ? </h2>
+        <br>Você ganha um total de <b>R$${ganhos.toFixed(2).replace('.', ',')}</b> com <b>${qtd_familia}</b> familias anualmente. <br>
+        <br>De acordo com nossas pesquisas, mais de 53% das famílias optam por retirar 
+        seus filhos do serviço de tranporte escolar, após saberem de algum  
+        esquecimento de crianças dentro do veículo. Sendo assim, se algum acidente  
+        ocorrer dentro da sua van, você pode perder até <b>R$${perda.toFixed(2).replace('.', ',')} anualmente.</b> <br/>
         
+        <h2 style="color: #FFB800; font-size: 40px;"> Mas </h2>
 
-            // pegar porcentagem de lucro perdido ao ano
+        Mais de <b>90% </b> das famílias que responderam a pesquisa disseram que pagariam uma <b>mensalidade mais alta</b> caso a van contenha <b>um sistema de segurança a mais</b>.
+        `
             
-            // pegar porcentagem de passageiros perdidos pela falta de segurança
-            const porcentagemPerdaPassageirosPelaSeguranca =  100 * sairamPelaSeguranca / totalPassageirosPerdidos
-
-
-            // resultado
-
-            output.innerHTML = `
-            <div style="display: flex; gap: 10px; align-items: center; margin: 1rem 0;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ff8800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-triangle"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-                
-                <h3>PERDAS POR FALTA DE SEGURANÇA </h3>
-            </div>
-
-            - Perdeu ${sairamPelaSeguranca} famílias <br />
-            - Perdeu R$${lucroPerdidoAno.toFixed(2).replace('.', ',')} no ano <br />
-            - Perdeu ${porcentagemPerdaPassageirosPelaSeguranca.toFixed(0)}% dos passageiros pela falta de segurança
-            
-            `
         }
 
    </script>
