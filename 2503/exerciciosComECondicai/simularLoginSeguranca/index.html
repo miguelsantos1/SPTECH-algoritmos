@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- METADATAS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <!-- TITLE -->
+    <title>IF</title>
+    <!-- CSS -->
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: rgb(238, 238, 238);
+        }
+
+        div {
+            width: 100%;
+            max-width: 500px;
+
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        div h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+
+            color: #000000ab;
+        }
+
+        div div {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        div input {
+            padding: 15px;
+            border: 0;
+
+            border-radius: 5px;
+        }
+
+        div input:focus {
+            outline: 0;
+
+        }
+
+        div button {
+            padding: 15px;
+            border: 0;
+            border-radius: 5px;
+
+            color: white;
+            background-color: rgb(101, 0, 184);
+        }
+
+        div button:hover {
+            background-color: rgb(81, 0, 147);
+            cursor: pointer;
+        }
+
+        div p {
+            margin: 10px 0;
+        }
+
+        .warning {
+            border-radius: 5px;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+        <h1> IF </h1>
+
+        <div>
+            <p> Altura inicial de seleção </p>
+            <input placeholder="Ex.: 1.75" type="text" id="input_alturaInicial">
+            <p> Altura final de seleção </p>
+            <input type="number" placeholder="Ex.: 2"id="input_alturaFinal">
+            <p> Nome </p>
+            <input type="text" placeholder="Ex.: Miguel"id="input_nome">
+            <p> Altura </p>
+            <input type="number" placeholder="Ex.: 1.80"id="input_altura">
+            <button onclick="analisarPiloto()">Analisar Piloto</button>
+        </div>
+        <p id="output"></p>
+
+    </div>
+
+    <script>
+
+        function analisarPiloto() {
+
+            let alturaInicial = input_alturaInicial.value
+            let alturaFinal = input_alturaFinal.value
+
+            let nome = input_nome.value
+            let altura = input_altura.value
+
+            if(alturaInicial >= 1 && alturaFinal >= alturaInicial) {
+                
+                if(altura >= alturaInicial && altura <= alturaFinal) {
+                    output.innerHTML = `O candidato ${nome} com altura de ${altura} participará do processo de seleção de piloto`
+                } else {
+                    output.innerHTML = `Infelizmente o candidato ${nome} com altura de ${altura} não atende os requisitos`
+                }
+
+            } else {
+                alert('Não poderá seguir em frente')
+            }
+
+
+
+
+        }
+
+    </script>
+</body>
+
+</html>
